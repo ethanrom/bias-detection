@@ -1,5 +1,5 @@
 import streamlit as st
-from extract_info import extract_chain, highlight_text, get_unbias_suggestion, calculate_overall_unbias_score, calculate_bias_percentage, calculate_average_sentence_length, \
+from extract_info import get_chain, highlight_text, get_unbias_suggestion, calculate_overall_unbias_score, calculate_bias_percentage, calculate_average_sentence_length, \
     create_bar_plot, create_pie_chart, generate_word_cloud, create_sentence_length_histogram, set_openai_api_key
 from langchain.document_loaders import PyPDFLoader
 from default_text import default_text3
@@ -59,6 +59,7 @@ def tab2():
             set_openai_api_key(openai_api_key)
 
             with st.spinner("Searching for biases..."):
+                extract_chain = get_chain()
                 info = extract_chain.run(input_text)
 
                 gender_bias_sentence_list = []
