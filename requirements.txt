@@ -1,0 +1,6 @@
+openai
+langchain
+matplotlib
+wordcloud
+streamlit
+streamlit_option_menu
