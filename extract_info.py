@@ -12,8 +12,8 @@ def set_openai_api_key(api_key):
     openai.api_key = api_key
     os.environ["OPENAI_API_KEY"] = openai.api_key
 
-short_llm = ChatOpenAI()
-long_llm = ChatOpenAI(model="gpt-3.5-turbo-16k")
+
+
 
 schema = {
     "properties": {
@@ -24,7 +24,7 @@ schema = {
     "required": [],
 }
 
-extract_chain = create_extraction_chain(schema, long_llm)
+extract_chain = create_extraction_chain(schema, long_llm = ChatOpenAI(model="gpt-3.5-turbo-16k"))
 
 def highlight_text(text, color):
     return f"<span style='background-color: {color};'>{text}</span>"
@@ -38,7 +38,7 @@ Unbiased Sentence:"""
 input_variables=["bias_sentence"]
 
 def get_unbias_suggestion(bias_sentence):
-
+    short_llm = ChatOpenAI()
     remove_biases_prompt = PromptTemplate(template=remove_biases_template, 
                             input_variables=input_variables,
                             )
